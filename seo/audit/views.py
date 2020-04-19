@@ -4,4 +4,4 @@ from django.views.generic import TemplateView
 
 
 class GenerateView(TemplateView):
-    template_name = 'audit/base.html'
+    template_name = 'audit/generate.html'
