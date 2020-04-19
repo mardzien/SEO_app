@@ -4,4 +4,10 @@
 
 <h1>Ala ma kota</h1>
 
+    <form action="{% url 'audit:generate' %}" method="POST" id="generateForm">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" class="btn btn-primary btn-large" value="Generate">
+    </form>
+
 {% endblock %}
