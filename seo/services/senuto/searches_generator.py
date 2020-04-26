@@ -41,5 +41,5 @@ def generate_keywords_statistics(keywords_list):
     workbook.save("data/keywords.xlsx")
 
 
-keyword_list = get_domains_from_file('data/keywords.txt')
-print(generate_keywords_statistics(['Auchan najnowsza gazetka', 'Biedronka promocja']))
+# keyword_list = get_domains_from_file('data/keywords.txt')
+# print(generate_keywords_statistics(['Auchan najnowsza gazetka', 'Biedronka promocja']))

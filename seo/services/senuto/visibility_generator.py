@@ -39,9 +39,9 @@ def generate_domain_statistics(domains, name):
     workbook.save(f"data/{name}.xlsx")
 
 
-### załadowanie pliku do listy
-# domain_list = get_domains_from_file("data/domains.txt")
-domain_list = get_top_competitors("medjol.pl", 11)
-### generowanie pliku ze statystykami
-print(domain_list)
-generate_domain_statistics(domain_list, "medjol_competitors")
+# ### załadowanie pliku do listy
+# # domain_list = get_domains_from_file("data/domains.txt")
+# domain_list = get_top_competitors("medjol.pl", 11)
+# ### generowanie pliku ze statystykami
+# print(domain_list)
+# generate_domain_statistics(domain_list, "medjol_competitors")

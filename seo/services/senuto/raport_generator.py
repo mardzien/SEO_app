@@ -58,5 +58,5 @@ def create_full_report(file_path):
     full_delta = full_time_stop - full_time_start
     print(f"Wygenerowana cały raport w czasie: {full_delta}")
 
-
-create_full_report(file_path)
+#
+# create_full_report(file_path)

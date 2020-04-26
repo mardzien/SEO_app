@@ -5,7 +5,9 @@ url = "https://api.senuto.com//api/users/token.json"
 
 
 def load_auth():
-    return json.loads("auth.json")
+    with open("auth.json") as fh:
+        result = json.load(fh)
+    return result
 
 
 def get_token():

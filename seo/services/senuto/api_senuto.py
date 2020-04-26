@@ -1,6 +1,6 @@
 import requests
 import json
-from user_data import auth
+from services.senuto.user_data import auth
 
 urls = {
     "auth":
@@ -49,9 +49,6 @@ def get_domain_statistics(domain, fetch_mode="subdomain"):
         value = domain_data['data']['statistics'][element]['recent_value']
         statistics_dict[element] = value
     return statistics_dict
-
-
-print(get_domain_statistics("medjol.pl"))
 
 
 def get_top_competitors(domain, number_of_competitors=10):
@@ -122,14 +119,13 @@ def get_range_compare_export(domain, file_path, date_min, date_max):
     data = requests.post(exports['rangeCompare'], headers=header,
                          data=json.dumps(json_data))
     text = json.loads(data.text)
-    print(text)
     url = text['data']['downloadUrl']
     download = requests.get(url)
     with open(f'{file_path}/{domain}_{compare}_keywords.xlsx', 'wb') as fh:
         fh.write(download.content)
 
 
-def get_important_keywords(domain, limit=11436):
+def get_important_keywords(domain, limit=100):
     accumulated_data = []
     page_index = 1
     while True:
@@ -166,11 +162,8 @@ def get_important_keywords(domain, limit=11436):
             "position_yesterday": data["position_yesterday"],
         }
         result.append(processed_dict)
-    print(processed_dict)
+    return processed_dict
     
-
-# get_important_keywords('izielnik.pl')
-
 
 # błędna metoda w dokumentacji! jest get, zamiast post
 def get_keywords_with_decreased_positions(domain, dates: list, limit=10):
@@ -217,10 +210,6 @@ def get_keywords_with_decreased_positions(domain, dates: list, limit=10):
         result.append(processed_dict)
 
     return result
-
-
-# zmienna = get_keywords_with_decreased_positions("optibuy.com", dates=["2020-01-01", "2020-02-01"])
-# print(len(zmienna))
 
 
 def get_keywords_with_increased_positions(domain, limit=10):

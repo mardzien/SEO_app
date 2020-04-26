@@ -12,8 +12,8 @@ class GenerateView(FormView):
 
     def form_valid(self, form):
         # print(form.cleaned_data)
-        zmienna = test_script.call_api(form.cleaned_data)
-        print(zmienna)
+        task_result = test_script.call_api(form.cleaned_data)
+        print(task_result)
         return super().form_valid(form)
 
 
