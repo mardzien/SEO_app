@@ -64,11 +64,13 @@ def get_date():
 # print(api_senuto.get_positions_history_chart_data("medjol.pl", get_date()[3], get_date()[0]))
 
 
+### trzeba rozszerzyć o ścieżkę katalogu docelowego
 def generate_audit(domain):
     ### podstawowe dane domeny
     df_1 = pd.DataFrame(api_senuto.get_domain_statistics(domain), index=[0])
     df_1.set_index(['domain'], inplace=True)
-    writer = pd.ExcelWriter(f'data/audit_{domain}_{get_date()[0]}.xlsx', engine='xlsxwriter')
+    file_path = f'media/audit_{domain}_{get_date()[0]}.xlsx'
+    writer = pd.ExcelWriter(file_path, engine='xlsxwriter')
     df_1.to_excel(writer, sheet_name='Podstawowe informacje')
     df_2 = pd.DataFrame(api_senuto.get_top_competitors(domain, 4))
     df_2.to_excel(writer, sheet_name='Konkurencja')
@@ -88,11 +90,8 @@ def generate_audit(domain):
     df_6 = pd.read_excel(f'temporary_data/{domain}_increased_keywords.xlsx')
     df_6.set_index(['Słowo kluczowe'], inplace=True)
     df_6.to_excel(writer, sheet_name='Wpadły do TOP10')
-
     writer.save()
     files = glob.glob('temporary_data/*')
     for f in files:
         os.remove(f)
-
-
-# generate_audit('medjol.pl')
+    return file_path

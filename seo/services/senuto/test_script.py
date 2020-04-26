@@ -1,11 +1,8 @@
-import uuid
 from services.senuto.audyt.main import generate_audit
 
 
-def call_api(params):
-    uid = uuid.uuid4()
-    # print(f"Ten uid, to jest taki: {uid}")
+def call_api_sync(params):
     print('Calling API...')
     domain_name = params['domain_name']
-    generate_audit(domain_name)
-    return dict(status="Pending", params=params, uid=uid)
+    file_path = generate_audit(domain_name)
+    return dict(status="OK", params=params, file_path=file_path)
