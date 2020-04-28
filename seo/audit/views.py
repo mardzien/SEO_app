@@ -1,4 +1,4 @@
-from django.views.generic import TemplateView, FormView
+from django.views.generic import TemplateView, FormView, DetailView
 from audit import forms
 from services.senuto import test_script
 from audit.models import AuditGeneration
@@ -16,6 +16,12 @@ class GenerateView(FormView):
         file_path = task_result['file_path']
         AuditGeneration.objects.create(file_path=file_path)
         return super().form_valid(form)
+
+
+class AuditGenerationDetailView(DetailView):
+    context_object_name = 'audit_generation'
+    queryset = AuditGeneration.objects.all()
+    template_name = 'audit/detail_view.html'
 
 
 class GenerateSuccessView(TemplateView):
