@@ -4,6 +4,8 @@
 
 <h1>Ala ma kota</h1>
 
-<a href="{% url 'audit:audit_detail' %}">Pobierz audyt</a>
+<a href="{% url 'audit:detail' pk=audit_generation.uid %}">Nie pobierz audyt</a>
+<p><a href="{{ MEDIA_URL }}{{ audit_generation.file_path }}">Pobierz audyt</a></p>
+
 
 {% endblock %}
